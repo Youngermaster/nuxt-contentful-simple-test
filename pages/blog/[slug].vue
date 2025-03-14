@@ -7,6 +7,7 @@
       height="400"
       class="mb-6"
       cover
+      :alt="post.fields.heroImage.fields.file.fileName"
     ></v-img>
 
     <!-- Title and meta info -->

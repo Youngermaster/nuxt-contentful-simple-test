@@ -4,7 +4,7 @@
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
       <v-toolbar-title>My Nuxt Contentful App</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn icon>
+      <v-btn icon aria-label="Menu" id="menu-button">
         <v-icon>mdi-dots-vertical</v-icon>
       </v-btn>
     </v-app-bar>
