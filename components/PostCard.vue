@@ -7,7 +7,9 @@
       </div>
     </v-card-text>
     <v-card-actions>
-      <v-btn text color="primary">Read More</v-btn>
+      <v-btn variant="text" color="primary" :to="`/blog/${post.fields.slug}`"
+        >Read More</v-btn
+      >
     </v-card-actions>
   </v-card>
 </template>

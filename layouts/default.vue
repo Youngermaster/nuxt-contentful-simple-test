@@ -13,7 +13,7 @@
       <slot />
     </v-main>
     <v-footer app inset>
-      <span class="mx-auto">&copy; 2025 My Company</span>
+      <span class="mx-auto">&copy; 2025 Youngermaster</span>
     </v-footer>
   </v-app>
 </template>

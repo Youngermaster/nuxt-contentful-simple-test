@@ -2,11 +2,11 @@
   <v-container class="mt-6">
     <!-- Render the MVP info -->
     <p class="font-weight-black pb-2">Company MVP</p>
-    <PersonCard :person="data.mvp" />
+    <PersonCard v-if="data" :person="data.mvp" />
 
     <!-- Render the person info -->
     <p class="font-weight-black pb-2">Company Employees</p>
-    <v-row>
+    <v-row v-if="data">
       <v-col
         v-for="person in data.people"
         :key="person.sys.id"
@@ -20,7 +20,7 @@
 
     <!-- Render the posts in a grid -->
     <p class="font-weight-black pb-2">Blog posts</p>
-    <v-row>
+    <v-row v-if="data">
       <v-col
         v-for="post in data.posts"
         :key="post.sys.id"
@@ -39,13 +39,13 @@ import { createClient } from "~/utils/contentful";
 import PersonCard from "~/components/PersonCard.vue";
 import PostCard from "~/components/PostCard.vue";
 
-// Use public keys (they’re exposed for the Content Delivery API)
+// Use public keys (they're exposed for the Content Delivery API)
 const config = useRuntimeConfig().public;
 
 // Create the Contentful client using our utility
 const client = createClient(config.CTFSpaceID, config.CTFAccessToken);
 
-// Fetch data from Contentful using Nuxt’s composable
+// Fetch data from Contentful using Nuxt's composable
 const { data, error } = await useAsyncData("contentfulData", async () => {
   const [mvp, entries, posts] = await Promise.all([
     client.getEntries({
@@ -53,11 +53,11 @@ const { data, error } = await useAsyncData("contentfulData", async () => {
     }),
     client.getEntries({
       content_type: "person",
-      order: "-sys.createdAt",
+      order: ["-sys.createdAt"] as any,
     }),
     client.getEntries({
       content_type: config.CTFBlogPostTypeID,
-      order: "-sys.createdAt",
+      order: ["-sys.createdAt"] as any,
     }),
   ]);
 
